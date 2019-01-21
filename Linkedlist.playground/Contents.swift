@@ -53,6 +53,20 @@ class LinkedList {
         }
         previous?.next = current?.next
     }
+    
+    //inserts item in proper order. Example: if you have 1,2,5,6 and need to insert 3...inserts 3 before the 5,6.
+    func insertOrder(value: Int) {
+        if head == nil || head?.value ?? Int.min >= value {
+            let newNode = Node(value: value, next: head)
+            head = newNode
+            return
+        }
+        var currentNode: Node? = head
+        while currentNode?.next != nil && currentNode?.next?.value ?? Int.min < value {
+            currentNode = currentNode?.next
+        }
+        currentNode?.next = Node(value: value, next: currentNode?.next)
+    }
 
 }
 let myList = LinkedList()
